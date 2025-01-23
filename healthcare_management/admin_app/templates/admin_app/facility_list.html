@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facility Management</title>
+</head>
+<body>
+    <h1>Facility Management</h1>
+    <a href="{% url 'add_facility' %}">Add New Facility</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Department</th>
+                <th>Resources</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for facility in facilities %}
+                <tr>
+                    <td>{{ facility.name }}</td>
+                    <td>{{ facility.location }}</td>
+                    <td>{{ facility.department }}</td>
+                    <td>{{ facility.resources }}</td>
+                    <td>
+                        <a href="{% url 'edit_facility' facility.id %}">Edit</a>
+                        <a href="{% url 'delete_facility' facility.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No facilities found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

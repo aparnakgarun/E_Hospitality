@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="role">Role:</label>
+        <select name="role" id="role" required>
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+            <option value="admin">Admin</option>
+        </select><br>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Add a link back to the login page -->
+    <p>Already registered? <a href="{% url 'login' %}">Click here to login</a></p>
+</body>
+</html>

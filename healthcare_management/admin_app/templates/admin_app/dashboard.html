@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Admin Dashboard</h1>
+
+    <div>
+        <h2>Overview</h2>
+        <p><strong>Total Patients:</strong> {{ total_patients }}</p>
+        <p><strong>Total Doctors:</strong> {{ total_doctors }}</p>
+        <p><strong>Total Facilities:</strong> {{ total_facilities }}</p>
+        <p><strong>Total Appointments:</strong> {{ total_appointments }}</p>
+    </div>
+
+    <div>
+        <h2>Manage Sections</h2>
+        <ul>
+            <li><a href="{% url 'manage_users' %}">Manage Users</a></li>
+            <li><a href="{% url 'facility_list' %}">Manage Facilities</a></li>
+            <li><a href="{% url 'manage_appointments' %}">Manage Appointments</a></li>
+        </ul>
+    </div>
+</body>
+</html>

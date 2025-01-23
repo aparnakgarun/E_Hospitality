@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Appointment</title>
+</head>
+<body>
+    <h1>Add Appointment</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="patient">Patient:</label>
+        <select name="patient" id="patient" required>
+            {% for patient in patients %}
+                <option value="{{ patient.id }}">{{ patient.username }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="doctor">Doctor:</label>
+        <select name="doctor" id="doctor" required>
+            {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.username }} - {{ doctor.department }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br>
+
+        <label for="appointment_date">Date:</label>
+        <input type="date" id="appointment_date" name="appointment_date" required><br>
+
+        <label for="details">Details:</label>
+        <textarea id="details" name="details" required></textarea><br>
+
+        <button type="submit">Add Appointment</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Details</title>
+</head>
+<body>
+    <h1>Details for Patient: {{ patient.username }}</h1>
+    <p><strong>Patient ID:</strong> {{ patient.auto_id }}</p>
+    <p><strong>Phone:</strong> {{ patient.phone }}</p>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+    <p><strong>Address:</strong> {{ patient.address }}</p>
+
+    <h2>Appointments</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Appointment Date</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.details }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

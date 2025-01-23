@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Facility</title>
+</head>
+<body>
+    <h1>Add New Facility</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="location">Location:</label>
+        <textarea id="location" name="location" required></textarea><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br>
+
+        <label for="resources">Resources:</label>
+        <textarea id="resources" name="resources"></textarea><br>
+
+        <button type="submit">Add Facility</button>
+    </form>
+</body>
+</html>

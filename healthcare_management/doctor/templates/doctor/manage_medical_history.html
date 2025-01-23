@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Medical History</title>
+</head>
+<body>
+    <h1>Manage Medical History for {{ patient.username }}</h1>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="diagnosis">Diagnosis:</label>
+        <textarea id="diagnosis" name="diagnosis" required></textarea><br>
+
+        <label for="medications">Medications:</label>
+        <textarea id="medications" name="medications"></textarea><br>
+
+        <label for="allergies">Allergies:</label>
+        <textarea id="allergies" name="allergies"></textarea><br>
+
+        <button type="submit">Add Record</button>
+    </form>
+
+    <h2>Existing Medical History</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Medications</th>
+                <th>Allergies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in medical_history %}
+                <tr>
+                    <td>{{ record.treatment_date }}</td>
+                    <td>{{ record.diagnosis }}</td>
+                    <td>{{ record.medications }}</td>
+                    <td>{{ record.allergies }}</td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="history_id" value="{{ record.id }}">
+                            <textarea name="diagnosis">{{ record.diagnosis }}</textarea>
+                            <textarea name="medications">{{ record.medications }}</textarea>
+                            <textarea name="allergies">{{ record.allergies }}</textarea>
+                            <button type="submit">Edit</button>
+                        </form>
+                        <form method="post" action="{% url 'doctor_delete_medical_history' record.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+</html>

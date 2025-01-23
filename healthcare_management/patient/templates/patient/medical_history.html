@@ -1,0 +1,42 @@
+<h2>Existing Medical History</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Diagnosis</th>
+            <th>Medications</th>
+            <th>Allergies</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in medical_history %}
+            <tr>
+                <td>{{ record.treatment_date }}</td>
+                <td>{{ record.diagnosis }}</td>
+                <td>{{ record.medications }}</td>
+                <td>{{ record.allergies }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="history_id" value="{{ record.id }}">
+                        <label for="diagnosis_{{ record.id }}">Diagnosis:</label>
+                        <textarea id="diagnosis_{{ record.id }}" name="diagnosis">{{ record.diagnosis }}</textarea><br>
+
+                        <label for="medications_{{ record.id }}">Medications:</label>
+                        <textarea id="medications_{{ record.id }}" name="medications">{{ record.medications }}</textarea><br>
+
+                        <label for="allergies_{{ record.id }}">Allergies:</label>
+                        <textarea id="allergies_{{ record.id }}" name="allergies">{{ record.allergies }}</textarea><br>
+
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No medical history found for this patient.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

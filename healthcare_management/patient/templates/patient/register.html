@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Registration</title>
+</head>
+<body>
+    <h1>Patient Registration</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Username: <input type="text" name="username" required></label><br>
+        <label>Password: <input type="password" name="password" required></label><br>
+        <label>Phone: <input type="text" name="phone" required></label><br>
+        <label>Email: <input type="email" name="email" required></label><br>
+        <label>Address: <textarea name="address" required></textarea></label><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

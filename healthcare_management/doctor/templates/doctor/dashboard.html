@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Doctor Dashboard</h1>
+
+    <h2>Doctor Details</h2>
+    <p><strong>Name:</strong> {{ doctor.username }}</p>
+    <p><strong>Email:</strong> {{ doctor.email }}</p>
+
+    <h2>Appointment Schedule</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Appointment Date</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.patient.username }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.details }}</td>
+                     <td>
+                        <a href="{% url 'doctor_manage_medical_history' appointment.patient.id %}">
+                            Manage Medical History
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<a href="{% url 'change_password' %}">Change Password</a>
+
+</body>
+</html>
